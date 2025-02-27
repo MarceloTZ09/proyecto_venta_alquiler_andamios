@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Alquiler</title>
+    <h1>REGISTRAR ALQUILER</h1></p> 
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            background: white;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+    
+</head>
+<body>
+    
+
+    <form action="/registrar_cotizacion" method="POST">
+        <label for="nombre">Nombre del Cliente:</label>
+        <input type="text" id="nombre" name="nombre" required><br><br>
+
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" name="telefono" required><br><br>
+
+        <label for="correo">Correo Electrónico:</label>
+        <input type="email" id="correo" name="correo" required><br><br>
+
+        <label for="destino">Departamento de Destino:</label>
+        <select id="destino" name="destino" required>
+            <option value="Amazonas">Amazonas</option>
+            <option value="Áncash">Áncash</option>
+            <option value="Apurímac">Apurímac</option>
+            <option value="Arequipa">Arequipa</option>
+            <option value="Ayacucho">Ayacucho</option>
+            <option value="Cajamarca">Cajamarca</option>
+            <option value="Callao">Callao</option>
+            <option value="Cusco">Cusco</option>
+            <option value="Huancavelica">Huancavelica</option>
+            <option value="Huánuco">Huánuco</option>
+            <option value="Ica">Ica</option>
+            <option value="Junín">Junín</option>
+            <option value="La Libertad">La Libertad</option>
+            <option value="Lambayeque">Lambayeque</option>
+            <option value="Lima">Lima</option>
+            <option value="Loreto">Loreto</option>
+            <option value="Madre de Dios">Madre de Dios</option>
+            <option value="Moquegua">Moquegua</option>
+            <option value="Pasco">Pasco</option>
+            <option value="Piura">Piura</option>
+            <option value="Puno">Puno</option>
+            <option value="San Martín">San Martín</option>
+            <option value="Tacna">Tacna</option>
+            <option value="Tumbes">Tumbes</option>
+            <option value="Ucayali">Ucayali</option>
+        </select><br><br>
+
+        <label for="tipo">Tipo de Cotización:</label>
+        <select id="tipo" name="tipo">
+            <option value="prioritario">Prioritario</option>
+            <option value="no_prioritario">No Prioritario</option>
+        </select><br><br>
+
+        <label for="producto">Producto:</label>
+        <select id="producto" name="producto" required>
+            {% for producto in productos %}
+                <option value="{{ producto[0] }}">{{ producto[1] }} - Precio: {{ producto[3] }} - Stock: {{ producto[2] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" min="1" required><br><br>
+
+        <label for="meses">Meses de Alquiler:</label>
+        <input type="number" id="n_meses" name="n_meses" min="1" required><br><br>
+
+        <label for="conductor">Conductor:</label>
+        <select id="conductor" name="conductor" required>
+            {% for conductor in conductores %}
+                <option value="{{ conductor[0] }}">{{ conductor[0] }} - Matrícula: {{ conductor[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <button type="submit">Registrar Cotización</button>
+    </form>
+</body>
+</html>

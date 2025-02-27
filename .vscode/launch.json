@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Flask",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/app.py",  // Cambia esto al nombre de tu archivo principal
+            "args": [
+                "run"
+            ],
+            "jinja": true,
+            "env": {
+                "FLASK_APP": "${workspaceFolder}/app.py",  // Cambia esto al archivo principal de tu aplicación Flask
+                "FLASK_ENV": "development"
+            },
+            "envFile": "${workspaceFolder}/.env",
+            "debugOptions": [
+                "RedirectOutput"
+            ]
+        }
+    ]
+}

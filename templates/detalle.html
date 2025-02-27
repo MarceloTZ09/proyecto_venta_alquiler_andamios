@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Cotización</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+        }
+        .info-card {
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .info-title {
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        .info-item {
+            margin-bottom: 8px;
+        }
+        .label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+        .button-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Detalle de Cotización</h1>
+        
+        <div class="info-card">
+            <div class="info-title">Información de Cotización</div>
+            <div class="info-item"><span class="label">ID Cotización:</span> {{ cotizacion.id }}</div>
+            <div class="info-item"><span class="label">Fecha:</span> {{ cotizacion.fecha_generacion }}</div>
+            <div class="info-item"><span class="label">Total:</span> S/. {{ cotizacion.total|round(2) }}</div>
+            <div class="info-item"><span class="label">Descuento:</span> S/. {{ cotizacion.descuento|round(2) }}</div>
+            <div class="info-item"><span class="label">IGV:</span> S/. {{ cotizacion.igv|round(2) }}</div>
+            <div class="info-item"><span class="label">Tipo:</span> {{ tipo_cotizacion|capitalize }}</div>
+            {% if tipo_cotizacion == 'alquiler' %}
+            <div class="info-item"><span class="label">Fecha de Devolución:</span> {{ fecha_devolucion }}</div>
+            <div class="info-item"><span class="label">Meses de Alquiler:</span> {{ meses_alquiler }}</div>
+            {% endif %}
+        </div>
+        
+        <div class="info-card">
+            <div class="info-title">Información del Cliente</div>
+            <div class="info-item"><span class="label">Nombre:</span> {{ cliente.nombre }}</div>
+            <div class="info-item"><span class="label">Teléfono:</span> {{ cliente.telefono }}</div>
+            <div class="info-item"><span class="label">Correo:</span> {{ cliente.gmail }}</div>
+            <div class="info-item"><span class="label">Tipo:</span> {{ cliente.tipo|capitalize }}</div>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-title">Información de Envío</div>
+            <div class="info-item"><span class="label">Destino:</span> {{ guia.destino }}</div>
+            <div class="info-item"><span class="label">Fecha de Envío:</span> {{ guia.fecha }}</div>
+            <div class="info-item"><span class="label">Conductor:</span> {{ envio.conductor }}</div>
+            <div class="info-item"><span class="label">Matrícula:</span> {{ envio.matricula }}</div>
+        </div>
+        
+        <div class="info-card">
+            <div class="info-title">Producto</div>
+            <div class="info-item"><span class="label">Nombre:</span> {{ producto.nombre }}</div>
+            <div class="info-item"><span class="label">Precio Unitario:</span> S/. {{ producto.precio }}</div>
+            <div class="info-item"><span class="label">Cantidad:</span> {{ cantidad }}</div>
+        </div>
+        
+        <div class="button-container">
+            <a href="/" class="button">Volver al Inicio</a>
+        </div>
+    </div>
+</body>
+</html>
