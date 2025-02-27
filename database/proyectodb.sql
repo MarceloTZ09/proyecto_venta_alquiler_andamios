@@ -242,14 +242,17 @@ set serveroutput on;
 --trigger
 CREATE OR REPLACE TRIGGER reabastecer_stock_andamios
 AFTER UPDATE ON ANDAMIOS
-FOR EACH ROW
+DECLARE
+    CURSOR c_andamios IS
+        SELECT id FROM ANDAMIOS WHERE stock = 0;
 BEGIN
-    IF :NEW.stock = 0 THEN
+    FOR r IN c_andamios LOOP
         UPDATE ANDAMIOS
         SET stock = stock + 20
-        WHERE id = :NEW.id;
-        DBMS_OUTPUT.PUT_LINE('El stock del andamio con ID ' || :NEW.id || ' llegó a 0 y se ha reabastecido con 20 unidades.');
-    END IF;
+        WHERE id = r.id;
+        
+        DBMS_OUTPUT.PUT_LINE('El stock del andamio con ID ' || r.id || ' llegó a 0 y se ha reabastecido con 20 unidades.');
+    END LOOP;
 END;
 /
 
